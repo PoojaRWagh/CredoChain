@@ -12,13 +12,10 @@ import com.credochain.repository.TaskRepo;
 public class TaskServiceImpl implements TaskServiceInter {
 	@Autowired
 	TaskRepo taskrepo;
-	List<Long> list=new ArrayList();
 	private Task task;
 	@Override
 	public Task createTask(Task task) {
 		// TODO Auto-generated method stub
-		list.add(task.getTaskid());
-		System.out.println("list"+list);
 		return taskrepo.save(task);
 	}
 	@Override
@@ -26,21 +23,24 @@ public class TaskServiceImpl implements TaskServiceInter {
 		// TODO Auto-generated method stub
 		return taskrepo.findAll();
 	}
+	//Update task change it's status
 	@Override
-	public void updateTask(Task task1, int taskid) {
-		for (Long tid : list) {
-			if(tid==taskid)
-			{
-				System.out.println("in if block");
-				this.task.setTitle(task1.getTitle());
-				this.task.setStatus(task1.getStatus());
-			}
-			else {
-				System.out.println("No such task");
-				}
-			
+	public Task updateTask(Task task1, int taskid) {
+		Task task=taskrepo.findByTaskid(taskid);
+		task.setStatus(task1.getStatus());
+		task.setTitle(task1.getTitle());
+		return taskrepo.save(task);
 		}
-		}
+	//Assign task to other
+	@Override
+	public Task assignTask(int taskid, String assignto) {
+		// TODO Auto-generated method stub
+
+		Task task=this.taskrepo.findByTaskid(taskid);
+		task.setAssignedTo(assignto);
+		System.out.println("assign to........."+assignto);
+		return taskrepo.save(task);
+	}
 
 
 }

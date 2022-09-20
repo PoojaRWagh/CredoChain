@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.credochain.model.Task;
 
 public interface TaskRepo extends MongoRepository<Task, Long> {
-	List<Task> findByTaskid(int taskid);
+	Task findByTaskid(int taskid);
 
 }

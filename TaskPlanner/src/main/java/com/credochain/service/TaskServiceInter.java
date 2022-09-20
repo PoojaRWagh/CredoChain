@@ -7,5 +7,6 @@ import com.credochain.model.Task;
 public interface TaskServiceInter {
 	public Task createTask(Task task);
 	public List<Task> listOfAllTask();
-	public void updateTask(Task task,int taskid);
+	public Task updateTask(Task task,int taskid);
+	public Task assignTask(int taskid,String assignto);
 }

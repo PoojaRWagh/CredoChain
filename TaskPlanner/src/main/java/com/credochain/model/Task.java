@@ -19,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Document(collection="tasks")
 public class Task {
-	private long taskid;
+	private int taskid;
 	private String title,description,createdBy,assignedTo;
 	@DateTimeFormat(pattern="dd-mm-yyyy")
 	private LocalDate  completedon;

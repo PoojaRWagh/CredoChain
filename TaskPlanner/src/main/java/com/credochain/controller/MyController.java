@@ -37,21 +37,13 @@ private TaskServiceImpl taskserviceimpl;
 	@PostMapping("/update/{taskid}")
 	public Task update(@RequestBody Task task,@PathVariable int taskid)
 	{
-		System.out.println("in update controller");
-		System.out.println("++++++++"+taskid);
-		this.taskserviceimpl.updateTask(task, taskid);
+		taskserviceimpl.updateTask(task, taskid);
 		return task;
 	}
-	/*@PostMapping("/assign/{id}/{assignto}")
-	public String assign(@PathVariable int id,@PathVariable("assignto") String assignto)
+	@PostMapping("/assign/{id}")
+	public void assign(@PathVariable int id,@RequestBody String assignto )
 	{
-		this.taskserviceimpl.assignTask(id,assignto);
-		return "Task assigned successfully";
+		taskserviceimpl.assignTask(id,assignto);
 	}
-	@GetMapping("/gettask/{taskid}")
-	public Optional<Task> searchTask(@PathVariable int taskid)
-	{
-		return taskrepo.findById(taskid);
-	}*/
 	
 }
